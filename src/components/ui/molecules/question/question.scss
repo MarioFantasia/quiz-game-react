@@ -1,0 +1,31 @@
+.question-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  height: 80%;
+  width: 90%;
+  background-color: blue;
+
+  .question {
+    margin:30px auto;
+    width: 90%;
+    height: 30%;
+    background-color: white;
+  }
+  .answers {
+    display: flex;
+    flex-wrap: wrap;
+    margin:30px auto;
+    padding: 5px;
+    width: 90%;
+    height: 70%;
+    background-color: white;
+
+    .answer {
+      margin: auto;
+      width: calc(50% - 10px);
+      height: calc(50% - 10px);
+      background-color: green;
+    }
+  }
+}

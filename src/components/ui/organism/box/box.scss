@@ -1,0 +1,51 @@
+
+  h5 {
+    height:50px;
+    line-height:50px;
+    text-align: center;
+    font-size: 25px;
+  }
+
+  .options {
+    width: 70%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    justify-content: space-around;
+  }
+
+  .box-categories {
+    margin: auto;
+    overflow-y: auto;
+    width:80%;
+    height: 400px;
+    background-color: white;
+    .input {
+      flex-direction: row-reverse;
+      margin: 3px 0;
+    }
+
+    .label, .inputContainer {
+      display: inline-block;
+    }
+
+    .label {
+      margin-right: auto;
+      text-align:left;
+    }
+
+    .inputContainer {
+      margin-right: 5px;
+    }
+  }
+
+  .questionBox {
+    display:flex;
+    height: 600px;
+    width: 100%;
+    background-color: red;
+  }
+
+  
+
