@@ -19,10 +19,16 @@ const optionsSlice = createSlice({
 		setDifficult: (state, action) => {
 			state.difficult = action.payload;
 		},
+		resetOptions: (state) => {
+			state.type = "";
+			state.time = "";
+			state.difficult = "";
+		},
 	},
 });
 
-export const { setType, setTime, setDifficult } = optionsSlice.actions;
+export const { setType, setTime, setDifficult, resetOptions } =
+	optionsSlice.actions;
 
 export const optionsSelector = (state) => state;
 

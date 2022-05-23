@@ -11,10 +11,13 @@ const questionesSlice = createSlice({
 		generateQuestiones: (state, { payload }) => {
 			state.questiones = payload;
 		},
+		resetQuestiones: (state) => {
+			state.questiones = [];
+		},
 	},
 });
 
-export const { generateQuestiones } = questionesSlice.actions;
+export const { generateQuestiones, resetQuestiones } = questionesSlice.actions;
 
 export const questionesSelector = (state) => state;
 

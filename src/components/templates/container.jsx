@@ -5,14 +5,17 @@ import Bottom from "./bottom/bottom";
 
 import "./container.scss";
 
-const Container = ({ container, onClickButton }) => {
+const Container = ({ container, onClickButton, sendRequestQuestiones }) => {
 	return (
 		<div className="container">
 			<Link to="/">
 				<h1>Quiz Game</h1>
 			</Link>
 			<Top container={container} />
-			<Bottom onClickButton={onClickButton} />
+			<Bottom
+				onClickButton={onClickButton}
+				sendRequestQuestiones={sendRequestQuestiones}
+			/>
 		</div>
 	);
 };
