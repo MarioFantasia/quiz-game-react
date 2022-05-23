@@ -16,10 +16,15 @@ const categoriesSlice = createSlice({
 		selectCategory: (state, action) => {
 			state.selectedCategory = action.payload;
 		},
+
+		resetSelectCategory: (state) => {
+			state.selectedCategory = null;
+		},
 	},
 });
 
-export const { getCategories, selectCategory } = categoriesSlice.actions;
+export const { getCategories, selectCategory, resetSelectCategory } =
+	categoriesSlice.actions;
 
 export const categoriesSelector = (state) => state;
 

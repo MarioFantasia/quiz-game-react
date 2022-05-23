@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import { useSelector, useDispatch } from "react-redux";
-import { optionsSelector } from "../../redux/slices/optionsSlice";
+import { resetOptions, optionsSelector } from "../../redux/slices/optionsSlice";
 import {
 	getCategories,
+	resetSelectCategory,
 	categoriesSelector,
 } from "../../redux/slices/categoriesSlice";
 
@@ -12,6 +13,7 @@ import { generateQuestiones } from "../../redux/slices/questionesSlice";
 import Container from "../../components/templates/container";
 
 const Home = () => {
+	const [sendRequestQuestiones, setSendRequestQuestiones] = useState(false);
 	const dispatch = useDispatch();
 	const { options } = useSelector(optionsSelector);
 	const { categories } = useSelector(categoriesSelector);
@@ -30,6 +32,16 @@ const Home = () => {
 			});
 	}, []);
 
+	useEffect(() => {
+		if (options && categories) {
+			Object.keys(options).forEach((option) => {
+				if (option !== "" && categories.selectedCategory !== null) {
+					setSendRequestQuestiones(true);
+				}
+			});
+		}
+	}, [options, categories]);
+
 	const getQuestiones = () => {
 		axios({
 			method: "get",
@@ -42,7 +54,10 @@ const Home = () => {
 				} else {
 					alert("Domande non disponibili");
 				}
-				console.log(response.data.results);
+			})
+			.finally(() => {
+				dispatch(resetSelectCategory());
+				dispatch(resetOptions());
 			})
 			.catch((error) => {
 				console.log(error);
@@ -54,8 +69,13 @@ const Home = () => {
 			<Container
 				container="home"
 				onClickButton={() => {
-					getQuestiones();
+					if (sendRequestQuestiones) {
+						getQuestiones();
+					} else {
+						alert("compila i campi");
+					}
 				}}
+				sendRequestQuestiones={sendRequestQuestiones}
 			/>
 		</div>
 	);
