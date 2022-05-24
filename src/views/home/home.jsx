@@ -34,11 +34,15 @@ const Home = () => {
 
 	useEffect(() => {
 		if (options && categories) {
-			Object.keys(options).forEach((option) => {
-				if (option !== "" && categories.selectedCategory !== null) {
-					setSendRequestQuestiones(true);
+			let keysCount = 0;
+			for (const key in options) {
+				if (options[key] !== "" && categories.selectedCategory !== null) {
+					keysCount += 1;
 				}
-			});
+			}
+			if (keysCount === 3) {
+				setSendRequestQuestiones(true);
+			}
 		}
 	}, [options, categories]);
 
