@@ -8,7 +8,7 @@ const Bottom = ({ onClickButton, sendRequestQuestiones }) => {
 	return (
 		<div className="bottom">
 			<Link to={sendRequestQuestiones ? "/game" : ""}>
-				{window.location.href === "http://localhost:3000/" ? (
+				{!window.location.href.includes("game") ? (
 					<Button onClick={onClickButton} text="GIOCA" />
 				) : null}
 			</Link>
