@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
+//import classnames from "classnames";
 import Input from "../../atoms/input/input";
 import "./option.scss";
 
@@ -7,11 +8,14 @@ import {
 	setType,
 	setTime,
 	setDifficult,
-	optionsSelector,
 } from "../../../../redux/slices/optionsSlice";
+import {
+	categoriesSelector,
+	selectCategory,
+} from "../../../../redux/slices/categoriesSlice";
 
 const Option = ({ optionName, optionselect }) => {
-	const { options } = useSelector(optionsSelector);
+	const { categories } = useSelector(categoriesSelector);
 	const dispatch = useDispatch();
 
 	return (
@@ -72,7 +76,7 @@ const Option = ({ optionName, optionselect }) => {
 							}}
 						/>
 					</>
-				) : (
+				) : optionselect === "difficult" ? (
 					<>
 						<Input
 							label="Easy"
@@ -103,7 +107,27 @@ const Option = ({ optionName, optionselect }) => {
 							}}
 						/>
 					</>
-				)}
+				) : optionselect === "categories" ? (
+					<div className="categories">
+						{categories.categories[0] ? (
+							categories.categories.map((category) => (
+								<div key={category.id}>
+									<Input
+										type="radio"
+										name="category"
+										label={category.name}
+										value={category.id}
+										onChange={(e) => {
+											dispatch(selectCategory(e.target.value));
+										}}
+									/>
+								</div>
+							))
+						) : (
+							<div>Loading...</div>
+						)}
+					</div>
+				) : null}
 			</div>
 		</div>
 	);

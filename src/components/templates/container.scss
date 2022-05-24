@@ -10,11 +10,25 @@
     width: 98%;
     margin: auto;
   }
+
+  @media screen and (max-width:670px) {
+  height:100%;
+    width: 98%;
+    margin: auto;
+  }
   
   .title {
-    margin: 0 auto;
+    margin: 10px auto 0 auto;
     display: flex;
     justify-content: center;
+    background-color: rgb(11, 85, 145);
+    width: 50%;
+    border-radius: 20px;
+    @media screen and (max-width:670px) {
+      margin: 10px auto 20px auto;
+      width: 100%;
+      }
+
     a {
       text-decoration: none;
       color: black;
