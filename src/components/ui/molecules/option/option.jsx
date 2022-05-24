@@ -15,8 +15,10 @@ const Option = ({ optionName, optionselect }) => {
 	const dispatch = useDispatch();
 
 	return (
-		<>
-			<div className="option-type">{optionName}</div>
+		<div className="option-box">
+			<div className="option-type">
+				<h3>{optionName}</h3>
+			</div>
 			<div className="option" optionselect={optionselect}>
 				{optionselect === "questiones" ? (
 					<>
@@ -103,7 +105,7 @@ const Option = ({ optionName, optionselect }) => {
 					</>
 				)}
 			</div>
-		</>
+		</div>
 	);
 };
 
