@@ -8,9 +8,11 @@ import "./container.scss";
 const Container = ({ container, onClickButton, sendRequestQuestiones }) => {
 	return (
 		<div className="container">
-			<Link to="/">
-				<h1>Quiz Game</h1>
-			</Link>
+			<div className="title">
+				<Link to="/">
+					<h1>Quiz Game</h1>
+				</Link>
+			</div>
 			<Top container={container} />
 			<Bottom
 				onClickButton={onClickButton}

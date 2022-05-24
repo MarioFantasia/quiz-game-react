@@ -1,10 +1,12 @@
-.option-type {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.option {
-  background-color: white;
-  display: flex;
-  justify-content: space-around;
+.option-box {
+  background-color: green;
+  .option-type {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .option {
+    display: flex;
+    justify-content: space-around;
+  }
 }

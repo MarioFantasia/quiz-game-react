@@ -11,13 +11,18 @@
     margin: auto;
   }
   
-  a {
-    text-decoration: none;
-    color: black;
-  }
-
-  h1 {
-    text-align: center;
-    margin: 30px auto;
+  .title {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    a {
+      text-decoration: none;
+      color: black;
+    }
+  
+    h1 {
+      text-align: center;
+      margin: 30px auto;
+    }
   }
 }
