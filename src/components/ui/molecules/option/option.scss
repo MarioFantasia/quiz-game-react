@@ -1,5 +1,9 @@
 .option-box {
-  background-color: green;
+  background-color: lightblue;
+  border-radius: 20px;
+  @media screen and (max-width:670px) {
+    margin-bottom: 15px;
+  }
   .option-type {
     text-align: center;
     margin-bottom: 10px;
@@ -8,5 +12,31 @@
   .option {
     display: flex;
     justify-content: space-around;
+    .categories {
+      margin: auto;
+      overflow-y: auto;
+      width:80%;
+      height: 400px;
+      @media screen and (max-width:670px) {
+        height: 300px;
+      }
+      .input {
+        flex-direction: row-reverse;
+        margin: 3px 0;
+      }
+  
+      .label, .inputContainer {
+        display: inline-block;
+      }
+  
+      .label {
+        margin-right: auto;
+        text-align:left;
+      }
+  
+      .inputContainer {
+        margin-right: 5px;
+      }
+    }
   }
 }
