@@ -30,6 +30,7 @@ const Home = () => {
 			.catch((error) => {
 				console.log(error);
 			});
+		dispatch(resetOptions());
 	}, []);
 
 	useEffect(() => {
@@ -61,7 +62,6 @@ const Home = () => {
 			})
 			.finally(() => {
 				dispatch(resetSelectCategory());
-				dispatch(resetOptions());
 			})
 			.catch((error) => {
 				console.log(error);

@@ -1,19 +1,39 @@
 import React, { useState, useEffect } from "react";
-
-import "./question.scss";
+import Button from "../../atoms/button/button";
 import { useSelector } from "react-redux";
-import { questionesSelector } from "../../../../redux/slices/questionesSlice";
+import { optionsSelector } from "../../../../redux/slices/optionsSlice";
+import "./question.scss";
 
-const Question = () => {
-	const { questiones } = useSelector(questionesSelector);
+const Question = ({ questionesList, correctAnswer, possibleAnswers }) => {
+	const [numberQuestion, setNumberQuestion] = useState(0);
+	const [positions, setPositions] = useState([]);
+	const [numberPositions, setNumberPositions] = useState(null);
+	const { options } = useSelector(optionsSelector);
 
-	let [numberQuestion, setNumberQuestion] = useState(0);
-	const [questionesList, setQuestionesList] = useState(null);
-	const [possibleAnswer, setPossibleAnswer] = useState([]);
+	const randomPosition = (min, max, numPos) => {
+		let setRandomPositions = [];
+		let randomPos;
+		for (let i = 0; i < numPos; i++) {
+			randomPos = Math.round(Math.random() * (max - min));
+			if (!setRandomPositions.includes(randomPos)) {
+				setRandomPositions.push(randomPos);
+			} else {
+				i--;
+			}
+		}
+		return setRandomPositions;
+	};
 
 	useEffect(() => {
-		setQuestionesList(questiones.questiones);
-	}, [questiones]);
+		if (possibleAnswers && possibleAnswers.length > 0) {
+			setNumberPositions(possibleAnswers[0].length);
+			if (options.type !== "boolean") {
+				setPositions(randomPosition(0, numberPositions - 1, numberPositions));
+			} else {
+				setPositions([0, 1]);
+			}
+		}
+	}, [possibleAnswers, numberPositions, options.type]);
 
 	return (
 		<>
@@ -21,36 +41,41 @@ const Question = () => {
 				<div>Domande non disponibili</div>
 			) : (
 				<>
-					{questionesList.map((q, i) => {
-						if (i === numberQuestion) {
+					{questionesList.map((q, index) => {
+						if (index === numberQuestion) {
 							return (
-								<div className="question-container" key={i}>
+								<div className="question-container" key={index}>
 									<div className="question">{q.question}</div>
 									<div className="answers">
-										<div className="answer">
-											<button onClick={() => setNumberQuestion(i + 1)}>
-												Click
-											</button>
-											{q.incorrect_answers[0]}
-										</div>
-										<div className="answer">
-											<button onClick={() => setNumberQuestion(i + 1)}>
-												Click
-											</button>
-											{q.incorrect_answers[1]}
-										</div>
-										<div className="answer">
-											<button onClick={() => setNumberQuestion(i + 1)}>
-												Click
-											</button>
-											{q.incorrect_answers[2]}
-										</div>
-										<div className="answer">
-											<button onClick={() => setNumberQuestion(i + 1)}>
-												Click
-											</button>
-											{q.correct_answer}
-										</div>
+										{positions.map((pos, i) => {
+											return (
+												<div key={i} className="answer">
+													<Button
+														text={possibleAnswers[index][pos]}
+														onClick={() => {
+															setNumberQuestion(index + 1);
+															if (
+																possibleAnswers[index][pos] ===
+																correctAnswer[index]
+															) {
+																alert("corretto");
+															} else {
+																alert("errata");
+															}
+															if (questionesList[index].type !== "boolean") {
+																setPositions(
+																	randomPosition(
+																		0,
+																		numberPositions - 1,
+																		numberPositions
+																	)
+																);
+															}
+														}}
+													/>
+												</div>
+											);
+										})}
 									</div>
 								</div>
 							);
