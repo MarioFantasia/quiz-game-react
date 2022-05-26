@@ -5,7 +5,14 @@ import Bottom from "./bottom/bottom";
 
 import "./container.scss";
 
-const Container = ({ container, onClickButton, sendRequestQuestiones }) => {
+const Container = ({
+	container,
+	onClickButton,
+	sendRequestQuestiones,
+	questionesList,
+	correctAnswer,
+	possibleAnswers,
+}) => {
 	return (
 		<div className="container">
 			<div className="title">
@@ -13,7 +20,12 @@ const Container = ({ container, onClickButton, sendRequestQuestiones }) => {
 					<h1>Quiz Game</h1>
 				</Link>
 			</div>
-			<Top container={container} />
+			<Top
+				container={container}
+				questionesList={questionesList}
+				correctAnswer={correctAnswer}
+				possibleAnswers={possibleAnswers}
+			/>
 			<Bottom
 				onClickButton={onClickButton}
 				sendRequestQuestiones={sendRequestQuestiones}

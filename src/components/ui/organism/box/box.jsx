@@ -4,7 +4,7 @@ import Question from "../../molecules/question/question";
 
 import "./box.scss";
 
-const Box = ({ box }) => {
+const Box = ({ box, questionesList, correctAnswer, possibleAnswers }) => {
 	return (
 		<>
 			{box === "options" ? (
@@ -23,7 +23,11 @@ const Box = ({ box }) => {
 				</div>
 			) : (
 				<div box={box} className="questionBox">
-					<Question />
+					<Question
+						questionesList={questionesList}
+						correctAnswer={correctAnswer}
+						possibleAnswers={possibleAnswers}
+					/>
 				</div>
 			)}
 		</>

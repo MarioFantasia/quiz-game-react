@@ -26,6 +26,10 @@
       width: calc(50% - 10px);
       height: calc(50% - 10px);
       background-color: green;
+      .button, button {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }
