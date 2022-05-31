@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Button from "../../atoms/button/button";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { optionsSelector } from "../../../../redux/slices/optionsSlice";
+import {
+	questionesSelector,
+	numberQuestion,
+} from "../../../../redux/slices/questionesSlice";
 import "./question.scss";
 
 const Question = ({ questionesList, correctAnswer, possibleAnswers }) => {
-	const [numberQuestion, setNumberQuestion] = useState(0);
+	const [number, setNumber] = useState(0);
 	const [positions, setPositions] = useState([]);
 	const [numberPositions, setNumberPositions] = useState(null);
 	const { options } = useSelector(optionsSelector);
+	const { questiones } = useSelector(questionesSelector);
+
+	const dispatch = useDispatch();
 
 	const randomPosition = (min, max, numPos) => {
 		let setRandomPositions = [];
@@ -42,7 +49,7 @@ const Question = ({ questionesList, correctAnswer, possibleAnswers }) => {
 			) : (
 				<>
 					{questionesList.map((q, index) => {
-						if (index === numberQuestion) {
+						if (index === number) {
 							return (
 								<div className="question-container" key={index}>
 									<div className="question">{q.question}</div>
@@ -53,7 +60,8 @@ const Question = ({ questionesList, correctAnswer, possibleAnswers }) => {
 													<Button
 														text={possibleAnswers[index][pos]}
 														onClick={() => {
-															setNumberQuestion(index + 1);
+															setNumber(index + 1);
+															dispatch(numberQuestion(questiones.question + 1));
 															if (
 																possibleAnswers[index][pos] ===
 																correctAnswer[index]

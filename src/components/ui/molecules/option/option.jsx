@@ -1,5 +1,4 @@
 import React from "react";
-//import classnames from "classnames";
 import Input from "../../atoms/input/input";
 import "./option.scss";
 
@@ -53,7 +52,7 @@ const Option = ({ optionName, optionselect }) => {
 							value="15"
 							name="time"
 							onChange={(e) => {
-								dispatch(setTime(e.target.value));
+								dispatch(setTime(parseInt(e.target.value)));
 							}}
 						/>
 						<Input
@@ -62,7 +61,7 @@ const Option = ({ optionName, optionselect }) => {
 							value="12"
 							name="time"
 							onChange={(e) => {
-								dispatch(setTime(e.target.value));
+								dispatch(setTime(parseInt(e.target.value)));
 							}}
 						/>
 
@@ -72,7 +71,7 @@ const Option = ({ optionName, optionselect }) => {
 							value="10"
 							name="time"
 							onChange={(e) => {
-								dispatch(setTime(e.target.value));
+								dispatch(setTime(parseInt(e.target.value)));
 							}}
 						/>
 					</>
