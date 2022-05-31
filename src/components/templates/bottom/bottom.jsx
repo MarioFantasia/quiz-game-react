@@ -12,7 +12,9 @@ const Bottom = ({ onClickButton, sendRequestQuestiones }) => {
 					<Button onClick={onClickButton} text="GIOCA" />
 				</Link>
 			) : (
-				<Timer />
+				<>
+					<Timer />
+				</>
 			)}
 		</div>
 	);
