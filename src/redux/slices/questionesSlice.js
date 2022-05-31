@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const initialState = {
 	questiones: [],
+	question: 0,
 };
 
 const questionesSlice = createSlice({
@@ -11,13 +12,19 @@ const questionesSlice = createSlice({
 		generateQuestiones: (state, { payload }) => {
 			state.questiones = payload;
 		},
+		numberQuestion: (state, action) => {
+			state.question = action.payload;
+		},
+
 		resetQuestiones: (state) => {
 			state.questiones = [];
+			state.question = 0;
 		},
 	},
 });
 
-export const { generateQuestiones, resetQuestiones } = questionesSlice.actions;
+export const { generateQuestiones, numberQuestion, resetQuestiones } =
+	questionesSlice.actions;
 
 export const questionesSelector = (state) => state;
 
