@@ -9,7 +9,10 @@ import {
 	categoriesSelector,
 } from "../../redux/slices/categoriesSlice";
 
-import { generateQuestiones } from "../../redux/slices/questionesSlice";
+import {
+	generateQuestiones,
+	resetQuestiones,
+} from "../../redux/slices/questionesSlice";
 import Container from "../../components/templates/container";
 
 const Home = () => {
@@ -19,6 +22,7 @@ const Home = () => {
 	const { categories } = useSelector(categoriesSelector);
 
 	useEffect(() => {
+		dispatch(resetQuestiones());
 		axios({
 			method: "get",
 			url: "https://opentdb.com/api_category.php",
